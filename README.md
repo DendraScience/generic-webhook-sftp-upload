@@ -1,6 +1,6 @@
 # Generic Webhook to SFTP Upload
 
-Command line interface tool to forward Generic Webhook events to a file on a SFTP server.
+Command line interface tool to forward Generic Webhook events to a file on an SFTP server.
 
 ## Instructions
 
