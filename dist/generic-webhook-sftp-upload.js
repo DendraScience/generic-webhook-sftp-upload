@@ -43,6 +43,7 @@ require('./app')(log).then(app => {
     },
     boolean: ['final_newline'],
     default: {
+      config: '',
       encoding: 'utf8',
       final_newline: true,
       format: 'textl',
@@ -50,13 +51,13 @@ require('./app')(log).then(app => {
       name_spec: '/upload/{name}-{yyyy-LL-dd-HHmmss-SSS}-{random_3}.txt',
       port: 3000,
       root_spec: '/upload/{yyyy-LL-dd-HHmmss-SSS}-{random_3}.txt',
-      sftp_host: 'localhost',
+      sftp_host: '',
       sftp_password: '',
-      sftp_port: 22,
+      sftp_port: 0,
       sftp_username: '',
       task_seconds: 30
     },
-    string: ['encoding', 'format', 'name_spec', 'root_spec', 'secret', 'sftp_host', 'sftp_password', 'sftp_username']
+    string: ['config', 'encoding', 'format', 'name_spec', 'root_spec', 'secret', 'sftp_host', 'sftp_password', 'sftp_username']
   }); // Handle SIGTERM gracefully for Docker
   // SEE: http://joseoncode.com/2014/07/21/graceful-shutdown-in-node-dot-js/
 

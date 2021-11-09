@@ -7,6 +7,8 @@
  * @license BSD-2-Clause-FreeBSD
  * @module app
  */
+const loadJsonFile = require('load-json-file');
+
 const {
   DateTime
 } = require('luxon');
@@ -152,15 +154,25 @@ module.exports = async log => {
 
   app.eval = async p => {
     if (!p.secret) throw new Error('Required: secret');
+    const config = p.config ? await loadJsonFile(p.config) : {};
     app.queue = new SeqQueue();
     app.ssh = {
-      opts: {
-        host: p.sftp_host,
-        port: p.sftp_port,
-        username: p.sftp_username,
+      opts: Object.assign({
+        host: 'localhost',
+        port: 22
+      }, config.ssh2, p.sftp_host ? {
+        host: p.sftp_host
+      } : undefined, p.sftp_port ? {
+        port: p.sftp_port
+      } : undefined, p.sftp_username ? {
+        username: p.sftp_username
+      } : undefined, p.sftp_password ? {
         password: p.sftp_password
-      }
+      } : undefined)
     };
+    /* eslint-disable-next-line no-console */
+
+    console.log('>>>', app.ssh);
     scheduleTask();
     app.taskSeconds = p.task_seconds;
 
