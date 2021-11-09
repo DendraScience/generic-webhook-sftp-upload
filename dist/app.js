@@ -170,9 +170,6 @@ module.exports = async log => {
         password: p.sftp_password
       } : undefined)
     };
-    /* eslint-disable-next-line no-console */
-
-    console.log('>>>', app.ssh);
     scheduleTask();
     app.taskSeconds = p.task_seconds;
 

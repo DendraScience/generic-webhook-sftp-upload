@@ -169,9 +169,6 @@ module.exports = async log => {
       )
     }
 
-    /* eslint-disable-next-line no-console */
-    console.log('>>>', app.ssh)
-
     scheduleTask()
 
     app.taskSeconds = p.task_seconds
